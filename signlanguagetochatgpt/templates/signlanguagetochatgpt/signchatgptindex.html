@@ -1,0 +1,59 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{% load static %}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'signlanguagetochatgpt/handstyle.css' %}">
+<script>
+    let idNum = 0;
+    function addFile(){
+        deepCopy();
+    }
+
+    function deepCopy()  {
+      // 'test' node 선택
+      const fileModule = document.getElementById('file-module-'+idNum);
+
+
+
+      // 노드 복사하기 (deep copy)
+      const newNode = fileModule.cloneNode(true);
+
+      console.log(newNode)
+
+      // 복사된 Node id 변경하기
+      idNum++;
+      newNode.id = 'file-module-' + idNum;
+
+      // 복사한 노드 붙여넣기
+      fileModule.after(newNode);
+    }
+</script>
+{% endblock %}
+<hr>
+<hr>
+<div class="backgr">
+<form action="chat" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <span id="file-module-0">
+        <fieldset class="field">
+            <legend><h6>파일 업로드</h6></legend>
+
+            <div class="btn-container">
+                <input class="btn-3d green" name="files" type="file">
+            </div>
+
+        </fieldset>
+    </span>
+    <div class="btn-container">
+        <button class="btn-3d blue" onclick="addFile()" type="button">파일 추가 </button>
+        <div class="header">
+            <input class="btn-3d red" type="submit" value="(내가만든)ChatGPT에게 수어로 문의하기">
+        </div>
+    </div>
+</form>
+</div>
+<hr>
+
+{% endblock content %}

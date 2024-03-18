@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{% load static %}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'signlanguagetochatgpt/style.css' %}">
+{% endblock %}
+
+<hr>
+<hr>
+<div class="form-background">
+    <div class="form-white"> 
+        <form action="chat1" method="post" entype="application/x-www-form-urlencoded">
+            {% csrf_token %}
+            <div id="file-module-0">
+                <label class="title">chat gpt에게 요청하기</label><br><br>
+                <textarea class="question" id="question" name="question">{{question}}</textarea><br><br>
+            </div>
+            <div>
+            <label class="answer">응답 : </label>
+            <span id="result">{{result}}</span><br><br>
+        </div>
+            <div><button class="text-button" id="text-button" type="submit" >질문</button></div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock content %}

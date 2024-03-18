@@ -1,0 +1,18 @@
+{% load static %}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'gpt/style.css' %}">
+{% endblock %}
+<div class="form-background">
+    <div class="form-white"> 
+        <form action="chat" method="post" entype="application/x-www-form-urlencoded">
+            {% csrf_token %}
+            <div id="file-module-0">
+                <label class="title">chat gpt에게 요청하기</label><br><br>
+                <textarea class="question" id="question" name="question"></textarea><br><br>
+            </div>
+            <div>
+                <button class="text-button" id="text-button" type="submit" >질문</button>
+            </div>
+        </form>
+    </div>
+</div>
