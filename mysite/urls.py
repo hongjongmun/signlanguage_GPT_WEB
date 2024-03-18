@@ -17,11 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render
+from django.views.generic.base import RedirectView
 
 def index(request):
     return render(request,'index.html')
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='/signlanguagetochatgpt/'), name='go-to-signlanguagetochatgpt'),
     path('admin/', admin.site.urls),
     path('signlanguagetochatgpt/',include('signlanguagetochatgpt.urls')),
 ]
